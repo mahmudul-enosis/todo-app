@@ -1,0 +1,298 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.workspace {
+  min-height: 100dvh;
+  padding: 48px 24px;
+}
+
+.task-panel {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.panel-header,
+.form-row,
+.list-heading,
+.task-list li,
+.alert,
+.task-actions,
+.check-control {
+  display: flex;
+  align-items: center;
+}
+
+.panel-header {
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #d8dee6;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #31645a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  color: #17212b;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.summary {
+  min-width: 128px;
+  padding-left: 20px;
+  border-left: 3px solid #e8b44d;
+}
+
+.summary strong,
+.summary span {
+  display: block;
+}
+
+.summary strong {
+  color: #17212b;
+  font-size: 1.5rem;
+}
+
+.summary span,
+.list-heading span {
+  color: #687381;
+  font-size: 0.82rem;
+}
+
+.task-form {
+  padding: 28px 0;
+  border-bottom: 1px solid #d8dee6;
+}
+
+.task-form > label {
+  display: block;
+  margin-bottom: 8px;
+  color: #35404b;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-row {
+  align-items: stretch;
+  gap: 8px;
+}
+
+input[type='text'] {
+  min-width: 0;
+  flex: 1;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #aeb8c4;
+  border-radius: 5px;
+  background: #fff;
+  color: #17212b;
+  font: inherit;
+}
+
+input[type='text']:focus {
+  border-color: #31645a;
+  outline: 3px solid rgb(49 100 90 / 18%);
+}
+
+button {
+  min-height: 40px;
+  border-radius: 5px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input[type='checkbox']:focus-visible {
+  outline: 3px solid rgb(49 100 90 / 24%);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 0 16px;
+}
+
+.primary-button {
+  border: 1px solid #28564e;
+  background: #31645a;
+  color: #fff;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: #28564e;
+}
+
+.secondary-button {
+  border: 1px solid #aeb8c4;
+  background: #fff;
+  color: #35404b;
+}
+
+.field-error {
+  margin: 7px 0 0;
+  color: #a6372d;
+  font-size: 0.82rem;
+}
+
+.alert {
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-left: 3px solid #b53d32;
+  background: #fff1ef;
+  color: #7f2922;
+  font-size: 0.88rem;
+}
+
+.alert button {
+  min-height: auto;
+  padding: 3px 8px;
+  border: 1px solid #d58982;
+  background: transparent;
+  color: inherit;
+}
+
+.list-heading {
+  justify-content: space-between;
+  padding: 26px 0 12px;
+}
+
+.list-heading h2 {
+  margin-bottom: 0;
+  color: #35404b;
+  font-size: 0.95rem;
+}
+
+.task-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #d8dee6;
+  list-style: none;
+}
+
+.task-list li {
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 62px;
+  padding: 10px 4px;
+  border-bottom: 1px solid #d8dee6;
+}
+
+.check-control {
+  min-width: 0;
+  flex: 1;
+  gap: 12px;
+  cursor: pointer;
+}
+
+input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #31645a;
+}
+
+.task-title {
+  overflow-wrap: anywhere;
+  color: #26313c;
+}
+
+.completed .task-title {
+  color: #7b8590;
+  text-decoration: line-through;
+}
+
+.task-actions {
+  flex: none;
+  gap: 4px;
+}
+
+.action-button {
+  min-height: 34px;
+  padding: 0 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #31645a;
+  font-size: 0.82rem;
+}
+
+.action-button:hover:not(:disabled) {
+  border-color: #c6ced7;
+  background: #f1f4f6;
+}
+
+.action-button.danger {
+  color: #a6372d;
+}
+
+.status,
+.empty-state {
+  padding: 48px 16px;
+  text-align: center;
+  color: #687381;
+}
+
+.empty-state h2 {
+  margin-bottom: 6px;
+  color: #35404b;
+  font-size: 1rem;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .workspace {
+    padding: 28px 16px;
+  }
+
+  .panel-header {
+    align-items: flex-end;
+  }
+
+  .form-row {
+    flex-wrap: wrap;
+  }
+
+  input[type='text'] {
+    flex-basis: 100%;
+  }
+
+  .primary-button,
+  .secondary-button {
+    flex: 1;
+  }
+
+  .task-list li {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .task-actions {
+    flex-direction: column;
+  }
+}

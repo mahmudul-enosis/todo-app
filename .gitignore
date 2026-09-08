@@ -1,0 +1,22 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Local dev container overrides
+.devcontainer/devcontainer.local.json
+
+# Angular
+node_modules/
+dist/
+.angular/

@@ -1,0 +1,101 @@
+<main class="workspace">
+  <section class="task-panel" aria-labelledby="page-title">
+    <header class="panel-header">
+      <div>
+        <p class="eyebrow">Todo workspace</p>
+        <h1 id="page-title">Tasks</h1>
+      </div>
+      <div class="summary" aria-label="Task summary">
+        <strong>{{ completedCount() }}</strong>
+        <span>of {{ todos().length }} complete</span>
+      </div>
+    </header>
+
+    <form class="task-form" (submit)="save(); $event.preventDefault()">
+      <label for="task-title">
+        {{ editingId() === null ? 'New task' : 'Edit task' }}
+      </label>
+      <div class="form-row">
+        <input
+          id="task-title"
+          type="text"
+          autocomplete="off"
+          placeholder="What needs to be done?"
+          [formField]="taskForm.title"
+        />
+        <button
+          class="primary-button"
+          type="submit"
+          [disabled]="taskForm().invalid() || saving()"
+        >
+          {{ saving() ? 'Saving...' : editingId() === null ? 'Add task' : 'Save' }}
+        </button>
+        @if (editingId() !== null) {
+          <button class="secondary-button" type="button" (click)="cancelEditing()">
+            Cancel
+          </button>
+        }
+      </div>
+      @if (taskForm.title().touched() && taskForm.title().invalid()) {
+        <p class="field-error">Enter a task title.</p>
+      }
+    </form>
+
+    @if (errorMessage()) {
+      <div class="alert" role="alert">
+        <span>{{ errorMessage() }}</span>
+        @if (!loading()) {
+          <button type="button" (click)="retry()">Retry</button>
+        }
+      </div>
+    }
+
+    <div class="list-heading">
+      <h2>All tasks</h2>
+      <span>{{ todos().length }} total</span>
+    </div>
+
+    @if (loading()) {
+      <div class="status" aria-live="polite">Loading tasks...</div>
+    } @else if (todos().length === 0 && !errorMessage()) {
+      <div class="empty-state">
+        <h2>No tasks yet</h2>
+        <p>Add your first task above.</p>
+      </div>
+    } @else {
+      <ul class="task-list">
+        @for (todo of todos(); track todo.id) {
+          <li [class.completed]="todo.isComplete">
+            <label class="check-control">
+              <input
+                type="checkbox"
+                [checked]="todo.isComplete"
+                [disabled]="busyId() === todo.id"
+                (change)="toggle(todo)"
+              />
+              <span class="task-title">{{ todo.title }}</span>
+            </label>
+            <div class="task-actions">
+              <button
+                type="button"
+                class="action-button"
+                [disabled]="busyId() === todo.id"
+                (click)="startEditing(todo)"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="action-button danger"
+                [disabled]="busyId() === todo.id"
+                (click)="remove(todo)"
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+</main>

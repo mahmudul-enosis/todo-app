@@ -1,0 +1,46 @@
+{
+  "name": "Todo API",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "angular.ng-template"
+      ]
+    }
+  },
+  "forwardPorts": [
+    5154,
+    7242,
+    4200
+  ],
+  "portsAttributes": {
+    "5154": {
+      "label": "Todo API HTTP"
+    },
+    "7242": {
+      "label": "Todo API HTTPS"
+    },
+    "4200": {
+      "label": "Angular frontend",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "dotnet restore TodoApi/TodoApi.csproj && npm install --prefix TodoClient",
+  "postAttachCommand": {
+    "api": "dotnet watch --project TodoApi/TodoApi.csproj run --urls http://0.0.0.0:5154",
+    "client": "npm start --prefix TodoClient -- --host 0.0.0.0 --port 4200"
+  },
+  "remoteEnv": {
+    "ASPNETCORE_ENVIRONMENT": "Development",
+    "ConnectionStrings__DefaultConnection": "Server=mysql;Port=3306;Database=todo_api;User=todo;Password=todo_password;"
+  }
+}
